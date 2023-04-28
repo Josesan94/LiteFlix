@@ -18,7 +18,7 @@ const MoviesList: React.FC<MovieListProps> = ({ listType }) => {
   const movies:PopularMovie[] = listType === "popularMovies" ? popularMovies : storedMovies;
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} maxWidth={'250px'}>
       {movies?.map((movie) => (
         <Grid item key={movie.id} xs={12}>
           <MovieCard movie={movie} />
