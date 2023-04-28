@@ -8,11 +8,14 @@ const theme = createTheme({
       main: '#556cd6',
     },
     secondary: {
-      main: '#19857b',
+      main: '#64EEBC',
     },
     error: {
       main: red.A400,
     },
+  },
+  typography: {
+    fontFamily: "'Bebas Neue', sans-serif",
   },
 });
 
