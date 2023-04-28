@@ -1,0 +1,158 @@
+import React from "react";
+import {
+  Container,
+  Typography,
+  Stack,
+  Button,
+  ButtonProps,
+  TypographyProps
+} from "@mui/material";
+import { styled } from "@mui/system";
+import MoviesList from "../components/Movies/MoviesList";
+import useFetchMovies from "../hooks/useFetchMovies";
+import { IMAGE_URL } from "../constants/api";
+import NavBar from "../components/navBar";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+
+
+
+const Homepage = () => {
+
+  const { outstandingMovie } = useFetchMovies();
+
+  const outStandingImage = `${IMAGE_URL}/w500${outstandingMovie?.poster_path}`;
+
+  const CustomButton = styled(Button)<ButtonProps>(({ theme }) => ({
+    backgroundColor: theme.palette.neutral.main,
+    marginRight: 5,
+  }));
+
+
+  const ButtonTypography = styled(Typography)<TypographyProps>(({theme}) => ({
+    color: theme.palette.primary.main,
+    fontSize:'18px',
+    lineHeight:'22px',
+    letterSpacing:'4px',
+  }))
+  return (
+    <>
+    <img
+          src={outStandingImage}
+          alt="background"
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: -1,
+            objectFit: "cover",
+          }}
+        />
+        <NavBar />
+        <Stack
+          mt={2}
+          flexDirection={"row"}
+          alignItems={"flex-end"}
+          justifyContent={"space-between"}
+        >
+          <Stack
+            mb={10}
+            gap={2}
+            flexDirection={"column"}
+            alignItems={"baseline"}
+            justifyContent={"space-around"}
+          >
+            <Typography
+              color="primary"
+              fontSize={"20px"}
+              lineHeight={"20px"}
+              letterSpacing={"4px"}
+            >
+              ORIGINAL DE <strong>LITEFLIX</strong>
+            </Typography>
+            <Typography
+              fontWeight={700}
+              fontSize={"120px"}
+              lineHeight={"100px"}
+              letterSpacing={"16px"}
+              color="secondary"
+            >
+              {outstandingMovie?.title}
+            </Typography>
+            <Stack
+              gap={"24px"}
+              mt={3}
+              flexDirection={"row"}
+              alignItems={"center"}
+              justifyContent={"space-around"}
+            >
+              <CustomButton variant="contained">
+                <Stack
+                  gap={1}
+                  mx={5}
+                  flexDirection={"row"}
+                  alignItems={"center"}
+                >
+                  <PlayArrowOutlinedIcon color="primary" />
+                  <ButtonTypography
+                    my={1}
+                  >
+                    REPRODUCIR
+                  </ButtonTypography>
+                </Stack>
+              </CustomButton>
+
+              <Button
+                variant="outlined"
+                sx={{
+                  backgroundColor: "rgba(36, 36, 36, 0.5);",
+                  border: "1px solid rgba(255, 255, 255, 0.5)",
+                }}
+              >
+                <Stack
+                gap={1}
+                mx={5}
+                flexDirection={"row"}
+                alignItems={"center"}
+                >
+                  <AddOutlinedIcon/>
+                  <ButtonTypography
+                    my={1}
+                  >
+                    MI LISTA
+                  </ButtonTypography>
+                </Stack>
+              </Button>
+            </Stack>
+          </Stack>
+          <Stack
+            mt={5}
+            flexDirection={"column"}
+            alignItems={"center"}
+            spacing={2}
+          >
+            <Stack flexDirection={"row"} alignItems={"center"}>
+              <Typography
+                color="primary"
+                fontSize={"18px"}
+                lineHeight={"18px"}
+                letterSpacing={"4px"}
+                variant="h6"
+              >
+                Ver: <strong>populares</strong>{" "}
+              </Typography>
+              <KeyboardArrowDownIcon color="primary" />
+            </Stack>
+            <MoviesList listType="popularMovies" />
+            <MoviesList listType="myMovies" />
+          </Stack>
+        </Stack>
+    
+    </>
+  )
+}
+
+export default Homepage
