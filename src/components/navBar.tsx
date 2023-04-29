@@ -87,64 +87,107 @@ const NavBar = () => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        position="static"
-        sx={{backgroundColor: "transparent", boxShadow: "none" }}
+<Box sx={{ flexGrow: 1 }}>
+  <AppBar position="static" sx={{ backgroundColor: "transparent", boxShadow: "none" }}>
+  <Toolbar sx={{ paddingLeft: "0px !important", display: { xs: "flex", md: "none" } }}>
+      <IconButton
+        size="large"
+        edge="start"
+        color="primary"
+        onClick={handleDrawerOpen}
       >
-        <Toolbar sx={{paddingLeft:"0px !important"}}>
-          <Typography
-            fontSize={"34px"}
-            letterSpacing={"4px"}
-            lineHeight={"34px"}
+        <SegmentOutlinedIcon />
+      </IconButton>
+      <Box sx={{ flexGrow: 1 }} />
+      <Typography
+        fontSize={"34px"}
+        letterSpacing={"4px"}
+        lineHeight={"34px"}
+        color="secondary"
+        sx={{ textAlign: "center" }}
+      >
+        <strong>Lite</strong>Flix
+      </Typography>
+      <Box sx={{ flexGrow: 1 }} />
+      <IconButton sx={{ borderRadius: "50%" }} size="large" edge="end" color="primary">
+        <HeroIcon />
+      </IconButton>
+    </Toolbar>
+    
+    <Toolbar sx={{ paddingLeft: "0px !important",display: { xs: "none", md: "flex" } }}>
+      <Box sx={{ display: { xs: "flex", md: "none" }, flexGrow: 1 }}>
+        <IconButton
+          size="large"
+          edge="start"
+          color="primary"
+          onClick={handleDrawerOpen}
+          sx={{ mr: 1 }}
+        >
+          <SegmentOutlinedIcon />
+        </IconButton>
+      </Box>
+      <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
+        <Typography
+          fontSize={"34px"}
+          letterSpacing={"4px"}
+          lineHeight={"34px"}
+          color="secondary"
+          sx={{ display: { xs: "block", md: "block" }, paddingRight: { xs: 0, md: 10 } }}
+        >
+          <strong>Lite</strong>Flix
+        </Typography>
+      </Box>
+      <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+        <AddOutlinedIcon color="primary" />
+        <Typography
+          fontSize={"18px"}
+          letterSpacing={"4px"}
+          lineHeight={"18px"}
+          color="primary"
+          sx={{ paddingLeft: 1 }}
+        >
+          Agregar pelicula
+        </Typography>
+      </Box>
+      <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, justifyContent: "flex-end" }}>
+        <IconButton
+          size="large"
+          edge="start"
+          color="primary"
+          onClick={handleDrawerOpen}
+          sx={{ mr: 1 }}
+        >
+          <SegmentOutlinedIcon />
+        </IconButton>
+        <IconButton
+          size="large"
+          aria-label="show 17 new notifications"
+          color="primary"
+        >
+          <Badge
             color="secondary"
-            sx={{ display: { xs: "none", sm: "block" }, paddingRight: 10 }}
+            overlap="circular"
+            badgeContent=" "
+            variant="dot"
           >
-            <strong>Lite</strong>Flix
-          </Typography>
-          <AddOutlinedIcon color="primary" />
-          <Typography
-            fontSize={"18px"}
-            letterSpacing={"4px"}
-            lineHeight={"18px"}
-            color="primary"
-            sx={{ paddingLeft: 1, display: { xs: "none", sm: "block" } }}
-          >
-            Agregar pelicula
-          </Typography>
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "flex" }, gap:1 }}>
-            <IconButton
-              size="large"
-              edge="end"
-              color="primary"
-              onClick={handleDrawerOpen}
-              sx={{ mr: 1 }}
-            >
-              <SegmentOutlinedIcon />
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="primary"
-            >
-              <Badge
-                color="secondary"
-                overlap="circular"
-                badgeContent=" "
-                variant="dot"
-              >
-                <NotificationsOutlinedIcon />
-              </Badge>
-            </IconButton>
-            <IconButton sx={{borderRadius:'50%'}} size="large" edge="end" color="primary">
-              <HeroIcon  />
-            </IconButton>
-          </Box>
-        </Toolbar>
-        <SideBar />
-      </AppBar>
-    </Box>
+            <NotificationsOutlinedIcon />
+          </Badge>
+        </IconButton>
+        <Box sx={{ display: { xs: "none", md: "block" } }}>
+          <IconButton sx={{ borderRadius: "50%" }} size="large" edge="end" color="primary">
+            <HeroIcon />
+          </IconButton>
+        </Box>
+      </Box>
+      <Box sx={{ display: { xs: "block", md: "none" }, justifyContent: "flex-end" }}>
+        <IconButton sx={{ borderRadius: "50%" }} size="large" edge="end" color="primary">
+          <HeroIcon />
+        </IconButton>
+      </Box>
+    </Toolbar>
+    <SideBar />
+  </AppBar>
+</Box>
   );
 };
 

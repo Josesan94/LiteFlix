@@ -53,17 +53,18 @@ const Homepage = () => {
         />
         <NavBar />
         <Stack
-          mt={2}
-          flexDirection={"row"}
-          alignItems={"flex-end"}
-          justifyContent={"space-between"}
+          mt={{xs:25,md:2}}
+          flexDirection={{xs: "column",md:"row"}}
+          alignItems={{xs: "center",md:"flex-end"}}
+          justifyContent={{xs: "center",md:"space-between"}}
         >
           <Stack
             mb={10}
             gap={2}
             flexDirection={"column"}
-            alignItems={"baseline"}
-            justifyContent={"space-around"}
+            alignItems={{xs: "center",md:"baseline"}}
+            justifyContent={{xs: "center",md:"baseline"}}
+            minWidth={{sx:'342px'}}
           >
             <Typography
               color="primary"
@@ -75,17 +76,19 @@ const Homepage = () => {
             </Typography>
             <Typography
               fontWeight={700}
-              fontSize={"120px"}
-              lineHeight={"100px"}
-              letterSpacing={"16px"}
+              fontSize={{xs:'76px',md:"120px"}}
+              lineHeight={{xs:"78px",md:"100px"}}
+              letterSpacing={{xs:"16px",md:"12px"}}
+              textAlign={{xs:'center', md:'inherit'}}
               color="secondary"
             >
-              {outstandingMovie?.title}
+              {/* {outstandingMovie?.title} */}
+              LA CASA DE PAPEL
             </Typography>
             <Stack
               gap={"24px"}
               mt={3}
-              flexDirection={"row"}
+              flexDirection={{xs:"column",md:"row"}}
               alignItems={"center"}
               justifyContent={"space-around"}
             >
