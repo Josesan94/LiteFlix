@@ -1,40 +1,20 @@
-import  { useState } from "react";
-import { styled, useTheme } from "@mui/material/styles";
+import { useState } from "react";
 import {
   AppBar,
   Box,
   Toolbar,
   Typography,
   Badge,
-  Divider,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Drawer,
-  IconButton, 
+  IconButton,
 } from "@mui/material";
 import SegmentOutlinedIcon from "@mui/icons-material/SegmentOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
+import NavDrawer from "./Drawer";
 import HeroIcon from "./heroIcon";
-import NavDrawer from "./Movies/Drawer";
-
-const navItems = ["Home", "About", "Contact"];
-
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  padding: theme.spacing(0, 1),
-  ...theme.mixins.toolbar,
-  justifyContent: "flex-start",
-}));
 
 const NavBar = () => {
   const [openBar, setOpenbar] = useState(false);
-  const theme = useTheme();
 
   const handleDrawerOpen = () => {
     setOpenbar(true);
@@ -43,7 +23,6 @@ const NavBar = () => {
   const handleDrawerClose = () => {
     setOpenbar(false);
   };
-
 
   return (
     <>
@@ -106,7 +85,7 @@ const NavBar = () => {
             <IconButton
               color="primary"
               onClick={handleDrawerOpen}
-              sx={{ display: { xs: "none", md: "block" }, mr: 2, mt:1 }}
+              sx={{ display: { xs: "none", md: "block" }, mr: 2, mt: 1 }}
             >
               <SegmentOutlinedIcon />
             </IconButton>
@@ -130,7 +109,7 @@ const NavBar = () => {
             </IconButton>
           </Box>
         </Toolbar>
-        <NavDrawer openBar={openBar} handleDrawerClose={handleDrawerClose}/>
+        <NavDrawer openBar={openBar} handleDrawerClose={handleDrawerClose} />
       </AppBar>
     </>
   );
