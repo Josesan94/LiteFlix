@@ -82,8 +82,7 @@ const Homepage = () => {
               textAlign={{xs:'center', md:'inherit'}}
               color="secondary"
             >
-              {/* {outstandingMovie?.title} */}
-              LA CASA DE PAPEL
+              {outstandingMovie?.title}
             </Typography>
             <Stack
               gap={"24px"}
