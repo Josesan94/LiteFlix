@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { styled, alpha, useTheme } from "@mui/material/styles";
+import  { useState } from "react";
+import { styled, useTheme } from "@mui/material/styles";
 import {
   AppBar,
   Box,
@@ -12,18 +12,15 @@ import {
   ListItemButton,
   ListItemText,
   Drawer,
-  Button,
-  IconButton,
+  IconButton, 
 } from "@mui/material";
 import SegmentOutlinedIcon from "@mui/icons-material/SegmentOutlined";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
-import MoreIcon from "@mui/icons-material/MoreVert";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
-import Image from "../assets/vite.svg";
 import HeroIcon from "./heroIcon";
+import NavDrawer from "./Movies/Drawer";
 
 const navItems = ["Home", "About", "Contact"];
 
@@ -31,7 +28,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
   justifyContent: "flex-start",
 }));
@@ -48,42 +44,6 @@ const NavBar = () => {
     setOpenbar(false);
   };
 
-  const SideBar = () => {
-    return (
-      <Drawer
-        sx={{
-          width: 240,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: 240,
-          },
-        }}
-        variant="persistent"
-        anchor="right"
-        open={openBar}
-      >
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
-          {navItems.map((item) => (
-            <ListItem key={item} disablePadding>
-              <ListItemButton sx={{ textAlign: "center" }}>
-                <ListItemText primary={item} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-    );
-  };
 
   return (
     <>
@@ -170,7 +130,7 @@ const NavBar = () => {
             </IconButton>
           </Box>
         </Toolbar>
-        <SideBar />
+        <NavDrawer openBar={openBar} handleDrawerClose={handleDrawerClose}/>
       </AppBar>
     </>
   );
