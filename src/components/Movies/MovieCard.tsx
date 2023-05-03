@@ -95,7 +95,7 @@ const MovieCard: React.FC<Props> = ({ movie }) => {
             {movie.title}
         </Typography>
         </Stack>
-        <Stack width={'100%'} direction={"row"} alignItems={"center"} justifyContent={'space-around'}>
+        <Stack width={'100%'} direction={"row"} alignItems={"center"} justifyContent={'space-between'}>
         <Stack direction={'row'} alignItems={'center'}>
         <Star color={"secondary"} />
         <Typography color={'primary'} fontSize={'14px'} lineHeight={'12px'} letterSpacing={'2px'}>{movie.vote_average}</Typography>
