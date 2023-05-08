@@ -7,9 +7,9 @@ export interface Movie {
 export interface PopularMovie {
   id: number;
   title: string;
-  backdrop_path: string;
-  release_date:string;
-  vote_average:number
+  backdrop_path: string | undefined;
+  release_date?:string;
+  vote_average?:number
   
 }
 
