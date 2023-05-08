@@ -1,10 +1,12 @@
-import React, { useState, ReactNode } from "react";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import { Typography } from "@mui/material";
+import React from "react";
+import {
+  List,
+  ListItem,
+  ListItemText,
+  MenuItem,
+  Menu,
+  Typography,
+} from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CheckIcon from "@mui/icons-material/Check";
 
@@ -71,30 +73,28 @@ const MoviesMenu: React.FC = () => {
         transformOrigin={{ vertical: "top", horizontal: 10 }} // Add this line
       >
         {options.map((option, index) => (
-          <>
-            <MenuItem
-              key={option}
-              selected={index === selectedIndex}
-              onClick={() => handleMenuItemClick(index)}
-              sx={{
-                paddingY: 1,
-                display: "flex",
-                justifyContent: "space-between",
-              }}
+          <MenuItem
+            key={option}
+            selected={index === selectedIndex}
+            onClick={() => handleMenuItemClick(index)}
+            sx={{
+              paddingY: 1,
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <Typography
+              fontSize={"16px"}
+              lineHeight={"16px"}
+              letterSpacing={"4px"}
+              color={"primary.main"}
+              fontWeight={index === selectedIndex ? 700 : 200}
             >
-              <Typography
-                fontSize={"16px"}
-                lineHeight={"16px"}
-                letterSpacing={"4px"}
-                color={"primary.main"}
-                fontWeight={index === selectedIndex ? 700 : 200}
-              >
-                {option}
-              </Typography>
+              {option}
+            </Typography>
 
-              {index === selectedIndex ? <CheckIcon color="primary" /> : null}
-            </MenuItem>
-          </>
+            {index === selectedIndex ? <CheckIcon color="primary" /> : null}
+          </MenuItem>
         ))}
       </Menu>
     </div>

@@ -1,4 +1,6 @@
 import React from "react";
+import HeroIcon from "./shared/heroIcon";
+import AddMovieButton from "./shared/AddMovieButton";
 import { styled } from "@mui/material/styles";
 import {
   List,
@@ -13,12 +15,13 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
-import HeroIcon from "./heroIcon";
 
 type Props = {
   openBar: boolean;
   handleDrawerClose: () => void;
+  isOpenModal: boolean;
+  handleOpenModal: () => void;
+  handleCloseModal: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 const navItems = [
@@ -39,7 +42,13 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-start",
 }));
 
-const NavDrawer: React.FC<Props> = ({ openBar, handleDrawerClose }) => {
+const NavDrawer: React.FC<Props> = ({
+  openBar,
+  handleDrawerClose,
+  isOpenModal,
+  handleCloseModal,
+  handleOpenModal,
+}) => {
   return (
     <>
       <Drawer
@@ -49,7 +58,7 @@ const NavDrawer: React.FC<Props> = ({ openBar, handleDrawerClose }) => {
             width: "46%",
             backgroundColor: "rgba(36, 36, 36, 0.9)",
             color: "primary",
-            paddingX: 8,
+            paddingX: { xs: 2, md: 8 },
             paddingY: 3,
             "@media (max-width: 900px)": {
               width: "100%",
@@ -131,17 +140,11 @@ const NavDrawer: React.FC<Props> = ({ openBar, handleDrawerClose }) => {
             ))}
             <ListItem sx={{ paddingLeft: 0, marginTop: 2 }}>
               <ListItemButton>
-                <IconButton sx={{ paddingLeft: 0 }}>
-                  <AddOutlinedIcon color={"primary"} />
-                </IconButton>
-                <Typography
-                  fontSize={"18px"}
-                  letterSpacing={"4px"}
-                  lineHeight={"18px"}
-                  color="primary"
-                >
-                  Agregar pelicula
-                </Typography>
+                <AddMovieButton
+                  isOpenModal={isOpenModal}
+                  handleCloseModal={handleCloseModal}
+                  handleOpenModal={handleOpenModal}
+                />
               </ListItemButton>
             </ListItem>
             <ListItem>

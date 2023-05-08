@@ -1,4 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import NavDrawer from "./Drawer";
+import HeroIcon from "./shared/heroIcon";
+import AddMovieButton from "./shared/AddMovieButton";
+import { motion } from "framer-motion";
 import {
   AppBar,
   Box,
@@ -9,12 +13,15 @@ import {
 } from "@mui/material";
 import SegmentOutlinedIcon from "@mui/icons-material/SegmentOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
-import NavDrawer from "./Drawer";
-import HeroIcon from "./heroIcon";
 
 const NavBar = () => {
-  const [openBar, setOpenbar] = useState(false);
+  const [openBar, setOpenbar] = useState<boolean>(false);
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const [initialRender, setInitialRender] = useState(true);
+
+  useEffect(() => {
+    setInitialRender(false);
+  }, []);
 
   const handleDrawerOpen = () => {
     setOpenbar(true);
@@ -24,9 +31,28 @@ const NavBar = () => {
     setOpenbar(false);
   };
 
+  const handleOpenModal = () => {
+    setIsOpenModal(true);
+  };
+
+  const handleCloseModal = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    setIsOpenModal(false);
+  };
+
+  const MotionAppBar = motion(AppBar);
+
   return (
     <>
-      <AppBar position="static" sx={{ background: "none", boxShadow: "none" }}>
+      <MotionAppBar
+        initial={
+          initialRender ? { opacity: 0, scale: 0.5 } : { opacity: 1, scale: 1 }
+        }
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 2 }}
+        position="static"
+        sx={{ background: "none", boxShadow: "none" }}
+      >
         <Toolbar>
           <IconButton
             color="primary"
@@ -64,17 +90,11 @@ const NavBar = () => {
             >
               <strong>Lite</strong>Flix
             </Typography>
-            <IconButton sx={{ marginLeft: 5 }}>
-              <AddOutlinedIcon color={"primary"} />
-            </IconButton>
-            <Typography
-              fontSize={"18px"}
-              letterSpacing={"4px"}
-              lineHeight={"18px"}
-              color="primary"
-            >
-              Agregar pelicula
-            </Typography>
+            <AddMovieButton
+              isOpenModal={isOpenModal}
+              handleCloseModal={handleCloseModal}
+              handleOpenModal={handleOpenModal}
+            />
           </Box>
           <Box
             sx={{
@@ -109,8 +129,14 @@ const NavBar = () => {
             </IconButton>
           </Box>
         </Toolbar>
-        <NavDrawer openBar={openBar} handleDrawerClose={handleDrawerClose} />
-      </AppBar>
+        <NavDrawer
+          isOpenModal={isOpenModal}
+          handleOpenModal={handleOpenModal}
+          handleCloseModal={handleCloseModal}
+          openBar={openBar}
+          handleDrawerClose={handleDrawerClose}
+        />
+      </MotionAppBar>
     </>
   );
 };
