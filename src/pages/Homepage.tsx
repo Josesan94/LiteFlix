@@ -1,6 +1,9 @@
-import React from "react";
+import NavBar from "../components/navBar";
+import MoviesMenu from "../components/moviesMenu";
+import MoviesList from "../components/Movies/MoviesList";
+import useFetchMovies from "../hooks/useFetchMovies";
+import { IMAGE_URL } from "../constants/api";
 import {
-  Container,
   Typography,
   Stack,
   Button,
@@ -8,16 +11,10 @@ import {
   TypographyProps,
   Box,
 } from "@mui/material";
+import { motion } from "framer-motion";
 import { styled } from "@mui/system";
-import MoviesList from "../components/Movies/MoviesList";
-import useFetchMovies from "../hooks/useFetchMovies";
-import { IMAGE_URL } from "../constants/api";
-import NavBar from "../components/navBar";
-import MoviesMenu from "../components/moviesMenu";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
-
 
 const Homepage = () => {
   const { outstandingMovie } = useFetchMovies();
@@ -29,7 +26,7 @@ const Homepage = () => {
     marginRight: 5,
   }));
 
-  const CustomButtonMovies = styled(Button)<ButtonProps>(({ theme }) => ({
+  const CustomButtonMovies = styled(Button)<ButtonProps>(() => ({
     marginRight: 5,
   }));
 
@@ -52,29 +49,41 @@ const Homepage = () => {
     backgroundRepeat: "no-repeat",
   });
 
-  const GradientBox = styled(Box)(({ theme }) => ({
+  const MotionBackground = motion(BackgroundImage);
+
+  const GradientBox = styled(Box)(() => ({
     position: "relative",
     "&::before": {
       content: '""',
       position: "absolute",
-      top: "-200px", // Increase the height of the pseudo-element
+      top: "-200px",
       left: 0,
       width: "100%",
-      height: "200px", // Match the height adjustment
-      background: "linear-gradient(to bottom, rgba(36, 36, 36, 0) 0%, rgba(36, 36, 36, 1) 100%)",
+      height: "200px",
+      background:
+        "linear-gradient(to bottom, rgba(36, 36, 36, 0) 0%, rgba(36, 36, 36, 1) 100%)",
       zIndex: 1,
     },
   }));
 
+
+  const MotionStack = motion(Stack);
+
   return (
     <>
-      <BackgroundImage
+      <MotionBackground
+        initial={{ opacity: 0, scale: 1 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
         style={{
           backgroundImage: `url(${outStandingImage})`,
         }}
       />
       <NavBar />
-      <Stack
+      <MotionStack
+        initial={{ opacity: 0, scale: 1 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 3 }}
         mt={{ xs: 25, md: 2 }}
         flexDirection={{ xs: "column", md: "row" }}
         alignItems={{ xs: "center", md: "flex-end" }}
@@ -141,13 +150,15 @@ const Homepage = () => {
         >
           <GradientBox
             sx={{
+              display:'flex',
+              alignItems:'center',
+              justifyContent:'center',
               position: { xs: "absolute", md: "static" },
               zIndex: { xs: -1, md: "auto" },
               width: "100%",
               backgroundColor: { xs: "#242424", md: "transparent" },
               padding: { xs: 15, md: 0 },
               marginTop: { xs: -20, md: 0 },
-              
             }}
           >
             <Stack
@@ -155,14 +166,15 @@ const Homepage = () => {
               alignItems={"center"}
               justifyContent={"center"}
               gap={3}
+              zIndex={2}
             >
-              <MoviesMenu/>
+              <MoviesMenu />
               <MoviesList listType="popularMovies" />
               <MoviesList listType="myMovies" />
             </Stack>
           </GradientBox>
         </Stack>
-      </Stack>
+      </MotionStack>
     </>
   );
 };
