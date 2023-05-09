@@ -250,14 +250,18 @@ const MovieModal: React.FC<Props> = ({ isOpen, handleClose }) => {
                   ) : loading ? (
                     <LinearWithValueLabel progress={uploadProgress} />
                   ) : (
-                    <Button
-                      sx={{
-                        width: "100%",
-                        height: "100px",
-                        border: "1px dashed #FFFFFF",
-                      }}
-                      variant="outlined"
-                      component="label"
+                    <Box
+                    sx={{
+                      width: "100%",
+                      height: "100px",
+                      border: "1px dashed #FFFFFF",
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      cursor: "pointer",
+                    }}
+                    component="label"
                     >
                       <input
                         hidden
@@ -273,6 +277,7 @@ const MovieModal: React.FC<Props> = ({ isOpen, handleClose }) => {
                         <AttachFileIcon color="primary" />
                       </IconButton>
                       <Typography
+                        color="primary"
                         fontSize={"16px"}
                         lineHeight={"16px"}
                         letterSpacing={"4px"}
@@ -281,7 +286,7 @@ const MovieModal: React.FC<Props> = ({ isOpen, handleClose }) => {
                           ? "Agregá un archivo"
                           : "Agregá un archivo o arrastralo y soltalo aquí"}
                       </Typography>
-                    </Button>
+                    </Box>
                   )}
 
                   <Stack
