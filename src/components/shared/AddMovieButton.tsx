@@ -24,9 +24,7 @@ const AddMovieButton: React.FC<Props> = ({
           },
         }}
       >
-        <IconButton sx={{ marginLeft: 5 }}>
-          <AddOutlinedIcon color={"primary"} />
-        </IconButton>
+        <AddOutlinedIcon color={"primary"} sx={{ marginLeft: 5 }} />
         <Typography
           fontSize={"18px"}
           letterSpacing={"4px"}
