@@ -1,6 +1,7 @@
 import React from "react";
 import HeroIcon from "./shared/heroIcon";
 import AddMovieButton from "./shared/AddMovieButton";
+import { motion } from "framer-motion";
 import { styled } from "@mui/material/styles";
 import {
   List,
@@ -42,6 +43,8 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-start",
 }));
 
+const MotionDrawer = motion(Drawer);
+
 const NavDrawer: React.FC<Props> = ({
   openBar,
   handleDrawerClose,
@@ -51,7 +54,7 @@ const NavDrawer: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <Drawer
+      <MotionDrawer
         sx={{
           flexShrink: 0,
           "& .MuiDrawer-paper": {
@@ -68,6 +71,9 @@ const NavDrawer: React.FC<Props> = ({
         }}
         anchor="right"
         open={openBar}
+        initial={{ x: "100%" }}
+        animate={openBar ? { x: "0%" } : { x: "100%" }}
+        transition={{ duration: 0.8, type: "spring" }}
       >
         <DrawerHeader>
           <Stack
@@ -163,7 +169,7 @@ const NavDrawer: React.FC<Props> = ({
             </ListItem>
           </List>
         </Stack>
-      </Drawer>
+      </MotionDrawer>
     </>
   );
 };
