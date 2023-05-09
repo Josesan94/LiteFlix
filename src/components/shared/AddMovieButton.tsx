@@ -1,6 +1,6 @@
 import React from "react";
 import MovieModal from "../addMovieModal";
-import { Button, IconButton, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 
 type Props = {

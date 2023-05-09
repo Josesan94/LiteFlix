@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import { useState } from "react";
 import NavBar from "../components/navBar";
 import MoviesMenu from "../components/moviesMenu";
 import MoviesList from "../components/Movies/MoviesList";
@@ -16,10 +16,11 @@ import { motion } from "framer-motion";
 import { styled } from "@mui/system";
 import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
-import { ListType } from '../types/movies';
+import { ListType } from "../types/movies";
 
 const Homepage = () => {
-  const [selectedListType, setSelectedListType] = useState<ListType>("popularMovies");
+  const [selectedListType, setSelectedListType] =
+    useState<ListType>("popularMovies");
   const { outstandingMovie } = useFetchMovies();
 
   const outStandingImage = `${IMAGE_URL}/w500${outstandingMovie?.poster_path}`;
@@ -170,9 +171,12 @@ const Homepage = () => {
               gap={3}
               zIndex={2}
             >
-              <MoviesMenu onChangeListType={setSelectedListType} selectedListType={selectedListType} />
+              <MoviesMenu
+                onChangeListType={setSelectedListType}
+                selectedListType={selectedListType}
+              />
               <Box>
-                <MoviesList listType={selectedListType}  />
+                <MoviesList listType={selectedListType} />
               </Box>
             </Stack>
           </GradientBox>

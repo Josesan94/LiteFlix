@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import {
   List,
   ListItem,
@@ -14,11 +14,14 @@ import { ListType } from "../types/movies";
 const options = ["Populares", "mis peliculas"];
 
 interface MoviesMenuProps {
-  onChangeListType : (listType: ListType) => void;
+  onChangeListType: (listType: ListType) => void;
   selectedListType: ListType;
 }
 
-const MoviesMenu: React.FC<MoviesMenuProps> = ({onChangeListType, selectedListType}) => {
+const MoviesMenu: React.FC<MoviesMenuProps> = ({
+  onChangeListType,
+  selectedListType,
+}) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const open = Boolean(anchorEl);
@@ -34,7 +37,7 @@ const MoviesMenu: React.FC<MoviesMenuProps> = ({onChangeListType, selectedListTy
   const handleMenuItemClick = (index: number) => {
     setSelectedIndex(index);
     setAnchorEl(null);
-    onChangeListType(index === 0 ? "popularMovies" : "myMovies")
+    onChangeListType(index === 0 ? "popularMovies" : "myMovies");
   };
 
   const handleClose = () => {
@@ -59,7 +62,8 @@ const MoviesMenu: React.FC<MoviesMenuProps> = ({onChangeListType, selectedListTy
               lineHeight={"18px"}
               letterSpacing={"4px"}
             >
-              Ver: {selectedListType === "popularMovies" ? options[0] : options[1]}
+              Ver:{" "}
+              {selectedListType === "popularMovies" ? options[0] : options[1]}
             </Typography>
           </ListItemText>
 
@@ -80,8 +84,8 @@ const MoviesMenu: React.FC<MoviesMenuProps> = ({onChangeListType, selectedListTy
         PaperProps={{
           style: { width: 241, height: 96, backgroundColor: "#242424" },
         }}
-        anchorOrigin={{ vertical: "bottom", horizontal: "left" }} // Add this line
-        transformOrigin={{ vertical: "top", horizontal: 10 }} // Add this line
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+        transformOrigin={{ vertical: "top", horizontal: 10 }}
       >
         {options.map((option, index) => (
           <MenuItem

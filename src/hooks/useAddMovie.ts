@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { PopularMovie } from "../types/movies";
 
-
 function useAddMovie() {
   const [storedMovies, setStoredMovies] = useState<PopularMovie[]>([]);
 
@@ -22,7 +21,7 @@ function useAddMovie() {
     }
   }, []);
 
-  return {storedMovies, addMovie};
+  return { storedMovies, addMovie };
 }
 
 export default useAddMovie;

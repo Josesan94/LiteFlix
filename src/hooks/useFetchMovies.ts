@@ -20,7 +20,7 @@ function useFetchMovies() {
 
       const popularResponse = await axios.get(
         `${MOST_POPULAR_API}?api_key=${API_KEY}`
-      )
+      );
       const popularMoviesData = popularResponse.data.results.slice(5, 9);
 
       setOutstadingMovie(outstandingMoviesData);
