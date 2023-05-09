@@ -90,6 +90,8 @@ const MovieModal: React.FC<Props> = ({ isOpen, handleClose }) => {
     },
   });
 
+
+
   const handleFileUpload = (e: any) => {
     setLoading(true);
     const file = e.target.files[0];
@@ -116,6 +118,12 @@ const MovieModal: React.FC<Props> = ({ isOpen, handleClose }) => {
         console.error("file reader result is not a string");
       }
     };
+  };
+
+  const handleGoToHome = (e:any) => {
+    formik.resetForm();
+    setSuccess(false);
+    handleClose(e);
   };
 
   const isButtonDisabled = !formik.values.image || !formik.values.title;
@@ -318,7 +326,7 @@ const MovieModal: React.FC<Props> = ({ isOpen, handleClose }) => {
                       variant="contained"
                       sx={{
                         background: isButtonDisabled
-                          ? "rgba(128, 128, 128, 1) !important" // Change this to the desired background color when disabled
+                          ? "rgba(128, 128, 128, 1) !important" 
                           : "rgba(255, 255, 255, 1)",
                         color: "#242424 !important",
                         width: 248,
@@ -326,6 +334,7 @@ const MovieModal: React.FC<Props> = ({ isOpen, handleClose }) => {
                       }}
                       type="submit"
                       disabled={isButtonDisabled}
+                      onClick={(e) => success ? handleGoToHome(e) : undefined}
                     >
                       <Typography
                         fontSize={"18px"}

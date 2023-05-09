@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
   List,
   ListItem,
@@ -9,13 +9,23 @@ import {
 } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CheckIcon from "@mui/icons-material/Check";
+import { ListType } from "../types/movies";
 
 const options = ["Populares", "mis peliculas"];
 
-const MoviesMenu: React.FC = () => {
+interface MoviesMenuProps {
+  onChangeListType : (listType: ListType) => void;
+  selectedListType: ListType;
+}
+
+const MoviesMenu: React.FC<MoviesMenuProps> = ({onChangeListType, selectedListType}) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const open = Boolean(anchorEl);
+
+  useEffect(() => {
+    setSelectedIndex(selectedListType === "popularMovies" ? 0 : 1);
+  }, [selectedListType]);
 
   const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -24,6 +34,7 @@ const MoviesMenu: React.FC = () => {
   const handleMenuItemClick = (index: number) => {
     setSelectedIndex(index);
     setAnchorEl(null);
+    onChangeListType(index === 0 ? "popularMovies" : "myMovies")
   };
 
   const handleClose = () => {
@@ -48,7 +59,7 @@ const MoviesMenu: React.FC = () => {
               lineHeight={"18px"}
               letterSpacing={"4px"}
             >
-              Ver: {options[selectedIndex]}
+              Ver: {selectedListType === "popularMovies" ? options[0] : options[1]}
             </Typography>
           </ListItemText>
 

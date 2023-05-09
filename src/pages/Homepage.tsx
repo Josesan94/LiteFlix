@@ -1,3 +1,4 @@
+import {useState} from 'react'
 import NavBar from "../components/navBar";
 import MoviesMenu from "../components/moviesMenu";
 import MoviesList from "../components/Movies/MoviesList";
@@ -15,8 +16,10 @@ import { motion } from "framer-motion";
 import { styled } from "@mui/system";
 import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
+import { ListType } from '../types/movies';
 
 const Homepage = () => {
+  const [selectedListType, setSelectedListType] = useState<ListType>("popularMovies");
   const { outstandingMovie } = useFetchMovies();
 
   const outStandingImage = `${IMAGE_URL}/w500${outstandingMovie?.poster_path}`;
@@ -66,7 +69,6 @@ const Homepage = () => {
     },
   }));
 
-
   const MotionStack = motion(Stack);
 
   return (
@@ -83,7 +85,7 @@ const Homepage = () => {
       <MotionStack
         initial={{ opacity: 0, scale: 1 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 3 }}
+        transition={{ duration: 1 }}
         mt={{ xs: 25, md: 2 }}
         flexDirection={{ xs: "column", md: "row" }}
         alignItems={{ xs: "center", md: "flex-end" }}
@@ -150,9 +152,9 @@ const Homepage = () => {
         >
           <GradientBox
             sx={{
-              display:'flex',
-              alignItems:'center',
-              justifyContent:'center',
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
               position: { xs: "absolute", md: "static" },
               zIndex: { xs: -1, md: "auto" },
               width: "100%",
@@ -168,9 +170,10 @@ const Homepage = () => {
               gap={3}
               zIndex={2}
             >
-              <MoviesMenu />
-              <MoviesList listType="popularMovies" />
-              <MoviesList listType="myMovies" />
+              <MoviesMenu onChangeListType={setSelectedListType} selectedListType={selectedListType} />
+              <Box>
+                <MoviesList listType={selectedListType}  />
+              </Box>
             </Stack>
           </GradientBox>
         </Stack>

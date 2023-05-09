@@ -36,3 +36,7 @@ export enum OriginalLanguage {
   Ko = "ko",
   Nl = "nl",
 }
+
+
+export type ListType = "popularMovies" | "myMovies";
+
